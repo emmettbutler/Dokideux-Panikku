@@ -24,7 +24,7 @@ package game {
 			height = 22;
 			drag.x = runSpeed*8;
 			acceleration.y = 420;
-			_jumpPower = 250;
+			_jumpPower = 220;
 			maxVelocity.x = runSpeed;
 			maxVelocity.y = _jumpPower;
 			
@@ -58,7 +58,7 @@ package game {
 			if(FlxG.kLeft) {
 				duck = false;
 				if(!keylock)
-					_unease += 50;
+					_unease += 45;
 				keylock = true;
 				if(_unease < 400){
 					facing = LEFT;
@@ -68,7 +68,7 @@ package game {
 			else if(FlxG.kRight) {
 				duck = false;
 				if(!keylock)
-					_unease += 50;
+					_unease += 45;
 				keylock = true;
 				if(_unease < 400){
 					acceleration.x += drag.x;

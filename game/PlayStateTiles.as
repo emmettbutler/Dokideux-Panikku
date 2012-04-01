@@ -118,7 +118,7 @@ package game
 
 		override public function update():void
 		{
-			_rightBorder.scale.x = _leftBorder.scale.x = _player._unease/35;
+			_rightBorder.scale.x = _leftBorder.scale.x = _player._unease/25;
 		
 			if(_player.y > _map.boundsMaxY || _player.x < coin.x - 200){
 				_player.kill()
@@ -131,7 +131,6 @@ package game
 				_map.layerGAME.collide(_bunnies[i]);
 			}
 			for(i = 0; i != _enemies.length; i++){
-				_player.collide(_enemies[i]);
 				_map.layerGAME.collide(_enemies[i]);
 			}
 
