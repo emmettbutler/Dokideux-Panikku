@@ -24,7 +24,7 @@ package game {
 			height = 22;
 			drag.x = runSpeed*8;
 			acceleration.y = 420;
-			_jumpPower = 220;
+			_jumpPower = 230;
 			maxVelocity.x = runSpeed;
 			maxVelocity.y = _jumpPower;
 			
@@ -106,7 +106,10 @@ package game {
 					play("duck_"+_anxietyLevel);
 				}
 				else {
-					play("idle_"+_anxietyLevel);
+					if(_anxietyLevel >= 4)
+						play("idle_4");
+					else
+						play("idle_"+_anxietyLevel);
 				}	
 			}
 			else

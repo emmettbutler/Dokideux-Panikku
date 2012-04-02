@@ -19,7 +19,7 @@ package game{
 			maxVelocity.x = runSpeed;
 			maxVelocity.y = _jumpPower;
 
-			addAnimation("run", [0, 1], 15);
+			addAnimation("run", [0, 1, 2], 15);
 		}
 
 		override public function update():void{
