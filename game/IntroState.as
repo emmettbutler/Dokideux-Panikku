@@ -9,6 +9,8 @@ package game
 		[Embed(source="data/titleObj.png")] private var ImgTitleObj:Class;
 		[Embed(source="data/playBtn.png")] private var ImgPlayBtn:Class;
 		[Embed(source="data/cursor.png")] private var ImgCursor:Class;
+		[Embed(source="data/sounds/title.mp3")] private var SndTitle:Class;
+		[Embed(source="data/sounds/title2.mp3")] private var SndTitle2 :Class;
 
 		private var t:FlxSprite; 
 	 
@@ -37,6 +39,12 @@ package game
 			b.scrollFactor.x=0;
 			b.scrollFactor.y=0;
 			this.add(b);
+
+			var s:int = Math.random()*2;
+			if(s == 1)
+				FlxG.play(SndTitle);
+			else
+				FlxG.play(SndTitle2);
 
 			FlxG.setCursor(ImgCursor);
 		}

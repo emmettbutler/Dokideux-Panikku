@@ -7,8 +7,9 @@ package game
 
 	public class PlayStateTiles extends FlxState
 	{
-		[Embed(source="data/coin.mp3")] private var SndCoin:Class;
+		[Embed(source="data/sounds/relief.mp3")] private var SndRelief:Class;
 		[Embed(source="data/flixel_logo.png")] private var ImgFlixelLogo:Class;
+		[Embed(source="data/sounds/breathing.mp3")] private var SndBreath:Class;
 
 		private var _map:MapBase;
 
@@ -19,6 +20,7 @@ package game
 		private var _spikes:FlxArray = new FlxArray;
 		private var _restart:Number;
 		private var coin:Coin;
+		private var deathTimer:int;
 		private var _enemy:GroundEnemy;
 		private var _bunnies:FlxArray = new FlxArray;
 		private var _leftBorder:BorderSide;
@@ -45,6 +47,8 @@ package game
 		function PlayStateTiles():void {
 			super();
 			
+			deathTimer = 0;
+
 			_map = new MapNewMap;
 			//Add the background (a bit hacky but works)
 			var bgColorSprite:FlxSprite = new FlxSprite(null, 0, 0, false, false, FlxG.width, FlxG.height, _map.bgColor);
@@ -61,16 +65,8 @@ package game
 			_rightBorder = new BorderSide(308, 0);
 			this.add(_rightBorder);
 
-			var txt:FlxText;
-			txt = new FlxText(100, (FlxG.height / 2), 40, 40, "Flixel 2 Tutorial Extended", 0xFFFFFFFF, null);
-			FlxG.state.add(txt);
-
 			_player = new Player(20, 0);
 			this.add(_player);
-
-			_enemy = new GroundEnemy(_map.layerGAME.width/2, _map.layerGAME.height/2-44);
-			_enemies.add(_enemy)
-			this.add(_enemy)
 
 			//inivisble, followed by camera
 			coin = new Coin(90, 0);
@@ -89,29 +85,26 @@ package game
 			this.add(logo);
 			
 			FlxG.flash(0xff131c1b);
+			//FlxG.setMusic(SndBreath);
 		}
 
 		protected function overlapPlayerEnemy(enemy:GroundEnemy, player:Player):void
 		{
-			if(_player.overlapsPoint(enemy.x + 5, enemy.y)){
-				_player.velocity.y = -10;
-			} else {
-				FlxG.play(SndCoin);
-				_player.kill()
-				FlxG.switchState(PlayStateTiles);
-			}
+			_player.play("die_"+_player._anxietyLevel);
+			_player.kill()
+			FlxG.switchState(PlayStateTiles);
 		}
 
 		protected function overlapPlayerFlyer(enemy:flyBoy, player:Player):void
 		{
-			FlxG.play(SndCoin);
+			_player.play("die_"+_player._anxietyLevel);
 			_player.kill()
 			FlxG.switchState(PlayStateTiles);
 		}
 
 		protected function overlapPlayerSpikes(spikes:Sprites, player:Player):void
 		{
-			FlxG.play(SndCoin);
+			_player.play("die_"+_player._anxietyLevel);
 			_player.kill()
 			FlxG.switchState(PlayStateTiles);
 		}
@@ -125,7 +118,11 @@ package game
 				FlxG.switchState(PlayStateTiles);
 			}
 
-			super.update();
+			if(_player.x == 4200){
+				FlxG.play(SndRelief);
+				FlxG.switchState(IntroState);
+			}
+
 			_map.layerGAME.collide(_player);
 			for(var i:Number = 0; i != _bunnies.length; i++){
 				_map.layerGAME.collide(_bunnies[i]);
@@ -134,9 +131,16 @@ package game
 				_map.layerGAME.collide(_enemies[i]);
 			}
 
+			/*if(_player._curFrame == 42 || _player._curFrame == 37 || _player._curFrame == 32 || _player._curFrame == 27){
+				_player.kill()
+				FlxG.switchState(PlayStateTiles);
+			}*/
+
 			FlxG.overlapArray(_enemies, _player, overlapPlayerEnemy);
 			FlxG.overlapArray(_flyers, _player, overlapPlayerFlyer);
 			FlxG.overlapArray(_spikes, _player, overlapPlayerSpikes);
+
+			super.update();
 		}
 	}
 }

@@ -6,9 +6,11 @@ package game {
 	public class MapBase {
 		//Layer name definitions
 		public static const LAYER_GAME:uint = 0;
+		public static const LAYER_CLOUDS:uint = 1;
 
 		//Layer variable accessors
 		public var layerGAME:FlxTilemap;
+		public var layerClouds:FlxTilemap;
 
 		//Map layers and principal layer (map) declarations
 		public var allLayers:Array;
@@ -25,6 +27,7 @@ package game {
 		public var bgColor:uint = 0xff000000;
 
 		virtual public function addSpritesToLayerGAME(onAddCallback:Function = null):void { }
+		virtual public function addSpritesToLayerClouds(onAddCallback:Function = null):void { }
 
 		public var customValues:Object = new Object;		//Name-value map;
 		virtual public function customFunction(param:* = null):* { }

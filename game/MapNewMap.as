@@ -7,6 +7,8 @@ package game {
 		//Media content declarations
 		[Embed(source="data/MapCSV_NewMap_GAME.txt", mimeType="application/octet-stream")] public var CSV_GAME:Class;
 		[Embed(source="data/tiles_1.png")] public var Img_GAME:Class;
+		[Embed(source="data/MapCSV_NewMap_Clouds.txt", mimeType="application/octet-stream")] public var CSV_Clouds:Class;
+		[Embed(source="data/cloud1.png")] public var Img_Clouds:Class;
 
 		
 		public function MapNewMap() {
@@ -20,260 +22,314 @@ package game {
 			layerGAME.y = 0;
 			layerGAME.scrollFactor.x = 1.000000;
 			layerGAME.scrollFactor.y = 1.000000;
+			layerClouds = new FlxTilemap(new CSV_Clouds, Img_Clouds,20,1);
+			layerClouds.x = 0;
+			layerClouds.y = 0;
+			layerClouds.scrollFactor.x = 1.000000;
+			layerClouds.scrollFactor.y = 1.000000;
 
-			allLayers = [ layerGAME ];
+			allLayers = [ layerGAME, layerClouds ];
 
+			mainLayer = layerGAME;
 
 			boundsMinX = 0;
 			boundsMinY = 0;
-			boundsMaxX = 3600;
+			boundsMaxX = 4800;
 			boundsMaxY = 240;
 		}
 
 		override public function addSpritesToLayerGAME(onAddCallback:Function = null):void {
 			var obj:FlxSprite;
 			
-			obj = new Sprites(684, 216);;
+			obj = new Bunny(4765, 193);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(696, 216);;
+			obj = new Bunny(4693, 193);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(900, 216);;
+			obj = new Bunny(4741, 193);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(756, 216);;
+			obj = new Bunny(4705, 193);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(744, 96);;
+			obj = new Sprites(1800, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(852, 96);;
+			obj = new Sprites(1896, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(897, 178);;
+			obj = new Sprites(1884, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(950, 134);;
+			obj = new Sprites(1992, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1037, 95);;
+			obj = new Sprites(2232, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1115, 96);;
+			obj = new Sprites(2388, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1128, 96);;
+			obj = new Sprites(2316, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1188, 96);;
+			obj = new Sprites(2328, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(792, 96);;
+			obj = new Sprites(2484, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1188, 96);;
+			obj = new Sprites(2100, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1188, 96);;
+			obj = new Sprites(2148, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(1089, 189);;
+			obj = new Sprites(2160, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(948, 216);;
+			obj = new Sprites(2904, 228);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(960, 216);;
+			obj = new Sprites(3444, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1284, 216);;
+			obj = new Sprites(3492, 108);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(1704, 228);;
+			obj = new Sprites(3636, 156);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(1455, 174);;
+			obj = new GroundEnemy(1944, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(1606, 58);;
+			obj = new GroundEnemy(2052, 96);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new flyBoy(1807, 210);;
+			obj = new GroundEnemy(1956, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(600, 216);;
+			obj = new GroundEnemy(3300, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(3096, 204);;
+			obj = new GroundEnemy(3360, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(2899, 219);;
+			obj = new GroundEnemy(3420, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2088, 216);;
+			obj = new GroundEnemy(3480, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2148, 216);;
+			obj = new GroundEnemy(3564, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2208, 216);;
+			obj = new GroundEnemy(3624, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2280, 216);;
+			obj = new GroundEnemy(3660, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2352, 216);;
+			obj = new GroundEnemy(3732, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2412, 216);;
+			obj = new GroundEnemy(4296, 204);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2460, 216);;
+			obj = new Sprites(4092, 216);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new GroundEnemy(2532, 216);;
+			obj = new Sprites(4224, 120);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(3084, 168);;
+			obj = new Sprites(4272, 144);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(3072, 144);;
+			obj = new Sprites(4284, 168);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(3024, 120);;
+			obj = new flyBoy(2805, 57);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(2244, 96);;
+			obj = new flyBoy(3009, 213);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(2292, 108);;
+			obj = new flyBoy(2661, 177);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Sprites(2436, 156);;
+			obj = new flyBoy(2097, 177);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
 			if(onAddCallback != null)
 				onAddCallback(obj);
-			obj = new Bunny(3529, 193);;
+			obj = new flyBoy(2157, 141);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new flyBoy(2265, 189);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new Sprites(780, 216);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new GroundEnemy(1044, 216);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new flyBoy(1041, 153);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new Sprites(1164, 216);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new flyBoy(1545, 177);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new GroundEnemy(204, 216);;
+			obj.x+=obj.offset.x;
+			obj.y+=obj.offset.y;
+			FlxG.state.add(obj);
+			if(onAddCallback != null)
+				onAddCallback(obj);
+			obj = new GroundEnemy(1224, 72);;
 			obj.x+=obj.offset.x;
 			obj.y+=obj.offset.y;
 			FlxG.state.add(obj);
