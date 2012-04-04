@@ -57,8 +57,10 @@ package game
 			FlxG.state.add(bgColorSprite);
 
 			//Create the map and add the layers to current the FlxState
+			FlxG.state.add(_map.layerClouds);
 			FlxG.state.add(_map.layerGAME);
 			_map.addSpritesToLayerGAME(onMapAddCallback);
+			_map.addSpritesToLayerClouds(onMapAddCallback);
 
 			_leftBorder = new BorderSide(0, 0);
 			this.add(_leftBorder);
