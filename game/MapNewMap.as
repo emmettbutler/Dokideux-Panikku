@@ -22,11 +22,11 @@ package game {
 			layerGAME.y = 0;
 			layerGAME.scrollFactor.x = 1.000000;
 			layerGAME.scrollFactor.y = 1.000000;
-			layerClouds = new FlxTilemap(new CSV_Clouds, Img_Clouds,20,1);
+			layerClouds = new FlxTilemap(new CSV_Clouds, Img_Clouds,6,1);
 			layerClouds.x = 0;
 			layerClouds.y = 0;
-			layerClouds.scrollFactor.x = 1.000000;
-			layerClouds.scrollFactor.y = 1.000000;
+			layerClouds.scrollFactor.x = .8000000;
+			layerClouds.scrollFactor.y = .8000000;
 
 			allLayers = [ layerGAME, layerClouds ];
 
